@@ -5,11 +5,13 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class Position_ {
 
-    private Position position(int row, char column) {
+    public static Position position(int row, char column) {
         return new Position(row, column);
     }
 
@@ -25,6 +27,20 @@ public class Position_ {
         assertThat(position(2, 'B'), is(not(equalTo(position(1, 'B')))));
         assertThat(position(2, 'B'), is(not(equalTo(position(2, 'C')))));
         assertThat(position(2, 'B'), is(not(equalTo(position(3, 'D')))));
+    }
+
+    @Test
+    public void a_position_with_lower_row_or_column_is_lower_than_other() throws Exception {
+        assertFalse(position(1,'A').isLowerThan(position(1,'A')));
+        assertTrue(position(1,'A').isLowerThan(position(1,'B')));
+        assertTrue(position(1,'A').isLowerThan(position(2,'A')));
+    }
+
+    @Test
+    public void a_position_with_higher_row_or_column_is_higher_than_other() throws Exception {
+        assertFalse(position(1, 'A').isHigherThan(position(1, 'A')));
+        assertTrue(position(1, 'B').isHigherThan(position(1, 'A')));
+        assertTrue(position(2, 'A').isHigherThan(position(1, 'A')));
     }
 
     @Test

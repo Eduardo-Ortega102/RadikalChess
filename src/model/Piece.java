@@ -5,5 +5,5 @@ import java.util.List;
 public interface Piece {
 
 
-    List<Position> possibleMovements();
+    List<Movement> possibleMovements();
 }

@@ -20,7 +20,7 @@ public class Position {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
-        return row != position.row ? false : column == position.column;
+        return row == position.row && column == position.column;
     }
 
     @Override
@@ -28,6 +28,13 @@ public class Position {
         return 31 * row + (int) column;
     }
 
+    public boolean isLowerThan(Position position) {
+        return row < position.row || column < position.column;
+    }
+
+    public boolean isHigherThan(Position position) {
+        return row > position.row || column > position.column;
+    }
 
     public Position forward() {
         return new Position(row + 1, column);
@@ -60,4 +67,5 @@ public class Position {
     public Position backwardAndLeft() {
         return new Position(row - 1, (char) (column - 1));
     }
+
 }

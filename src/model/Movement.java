@@ -25,7 +25,7 @@ public class Movement {
 
     @Override
     public String toString() {
-        return origin + "->" + destination;
+        return origin + ":" + destination;
     }
 
 }
